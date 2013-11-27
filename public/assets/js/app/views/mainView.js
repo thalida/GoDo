@@ -21,7 +21,8 @@ define(function (require) {
 	    	},
 	    	
 	    	render: function () {
-	    		var	allCount = this.todos.length,
+	    		var
+	    			allCount = this.todos.length,
 	    			activeCount = this.todos.where({completed: false}).length,
 	    			completedCount = this.todos.where({completed: true}).length;
 	    			
@@ -53,7 +54,8 @@ define(function (require) {
 		},
 		
 		createTodo: function(event){
-			var newTask = $(event.target).val(),
+			var 
+				newTask = $(event.target).val(),
 				keycode = event.keyCode || event.which;
 			if(keycode === 13 && newTask.length > 1 && newTask.length <= 20) {
 				$(event.target).val('').blur();
