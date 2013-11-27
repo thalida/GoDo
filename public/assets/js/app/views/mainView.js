@@ -1,14 +1,12 @@
 define(function (require) {
 	"use strict";
-	var $			=	require('jquery'),
-	    _       		=	require('underscore'),
-	    Backbone		=	require('backbone'),
-	    
-	    todosModel		=	require('app/models/todos'),
-	    
-	    todoListView	=	require('app/views/todoListView'),
-	    
-	    wrapperTemplate	=	_.template(require('text!tpl/wrapper.html'));
+	var	
+		$		=	require('jquery'),
+		_       	=	require('underscore'),
+		Backbone	=	require('backbone'),
+		todosModel	=	require('app/models/todos'),
+		todoListView	=	require('app/views/todoListView'),
+		wrapperTemplate	=	_.template(require('text!tpl/wrapper.html'));
 
 	return Backbone.View.extend({
 	    	initialize: function () {
