@@ -1,50 +1,50 @@
 define(function (require) {
-    "use strict";
-    var $                   =	require('jquery'),
-        _                   =	require('underscore'),
-        Backbone            =	require('backbone'),
+	"use strict";
+	var	$             	=	require('jquery'),
+        	_       	=	require('underscore'),
+        	Backbone	=	require('backbone'),
 
-		todosModel          =	require('app/models/todos'),
+		todosModel	=	require('app/models/todos'),
 
-		todoListView		=	require('app/views/todoListView'),
+		todoListView	=	require('app/views/todoListView'),
 
-        wrapperTemplate 	=	_.template(require('text!tpl/wrapper.html'));
+        	wrapperTemplate =	_.template(require('text!tpl/wrapper.html'));
 
-    return Backbone.View.extend({
-    	initialize: function () {
-    		this.tab = 'all';
-    		this.todos = new todosModel.TodosCollection();
-    		
-    		this.listenTo(this.todos, 'add', this.addOne);
-    		this.listenTo(this.todos, 'reset', this.addAll);
-    		this.listenTo(this.todos, 'all', this.render);
-    		
-    		this.todos.fetch();
-    	},
-    	
-    	render: function () {
-    		var allCount = this.todos.length,
-    			activeCount = this.todos.where({completed: false}).length,
-    			completedCount = this.todos.where({completed: true}).length;
-    			
-    		$('#all-count').html('(' + allCount + ')');
-    		$('#active-count').html('(' + activeCount + ')');
-    		$('#completed-count').html('(' + completedCount + ')');
-    		
-    		if(this.tab == 'all') this.filterShowAll();
-    		else if(this.tab == 'active') this.filterByActive();
-    		else if(this.tab == 'completed') this.filterByCompleted();
-    		
-           	return this;
-        },
-        
-        events: {
-        	"keyup #createTodo" : "createTodo",
-        	"click #allTab" : "filterShowAll",
-        	"click #completedTab" : "filterByCompleted",
-        	"click #activeTab" : "filterByActive"
-        },
-
+	return Backbone.View.extend({
+	    	initialize: function () {
+	    		this.tab = 'all';
+	    		this.todos = new todosModel.TodosCollection();
+	    		
+	    		this.listenTo(this.todos, 'add', this.addOne);
+	    		this.listenTo(this.todos, 'reset', this.addAll);
+	    		this.listenTo(this.todos, 'all', this.render);
+	    		
+	    		this.todos.fetch();
+	    	},
+	    	
+	    	render: function () {
+	    		var	allCount = this.todos.length,
+	    			activeCount = this.todos.where({completed: false}).length,
+	    			completedCount = this.todos.where({completed: true}).length;
+	    			
+	    		$('#all-count').html('(' + allCount + ')');
+	    		$('#active-count').html('(' + activeCount + ')');
+	    		$('#completed-count').html('(' + completedCount + ')');
+	    		
+	    		if(this.tab == 'all') this.filterShowAll();
+	    		else if(this.tab == 'active') this.filterByActive();
+	    		else if(this.tab == 'completed') this.filterByCompleted();
+	    		
+	           	return this;
+	        },
+	        
+	        events: {
+	        	"keyup #createTodo" : "createTodo",
+	        	"click #allTab" : "filterShowAll",
+	        	"click #completedTab" : "filterByCompleted",
+	        	"click #activeTab" : "filterByActive"
+	        },
+	
 		addOne: function(todo) {
 			var view = new todoListView({model: todo});
 			$("#listTodos").append(view.render().el);
@@ -91,5 +91,5 @@ define(function (require) {
 			$('#' + this.tab + 'Tab').addClass('selected');
 		}
 		
-    });
+	});
 });
