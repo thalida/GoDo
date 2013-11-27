@@ -3,7 +3,7 @@ define(function (require){
 	
 	var	$			=	require('jquery'),
 		_			= 	require('underscore'),
-		Backbone	= 	require('backbone'),
+		Backbone		= 	require('backbone'),
 	    
 		Todos = Backbone.Model.extend({
 			defaults: {
@@ -26,7 +26,7 @@ define(function (require){
 		});
 	
 	return {
-		Todos			:	Todos,
+		Todos		:	Todos,
 		TodosCollection	:	TodosCollection
 	}
 });
