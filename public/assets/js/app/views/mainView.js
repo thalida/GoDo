@@ -31,6 +31,10 @@ define(function (require) {
     		$('#active-count').html('(' + activeCount + ')');
     		$('#completed-count').html('(' + completedCount + ')');
     		
+    		if(this.tab == 'all') this.filterShowAll();
+    		else if(this.tab == 'active') this.filterByActive();
+    		else if(this.tab == 'completed') this.filterByCompleted();
+    		
            	return this;
         },
         
