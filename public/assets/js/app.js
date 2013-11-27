@@ -17,13 +17,12 @@ require.config({
         'underscore': {
             exports: '_'
         },
-        'app/router':{
+        'app/views/main':{
         	deps: ['backbone', 'localstorage']
         }
     }
 });
 
-require(['jquery', 'backbone', 'app/router'], function ($, Backbone, Router) {
-	var router = new Router();
-	Backbone.history.start();
+require(['jquery', 'backbone', 'app/views/main'], function ($, Backbone, GoDoView) {
+	new GoDoView({el: $('body')}).render();
 });
