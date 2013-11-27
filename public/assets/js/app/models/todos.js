@@ -21,7 +21,7 @@ define(function (require){
 	
 	TodosCollection = Backbone.collection.extend({
 		model: Todo,
-		localStorage: new Backbone.LocalStorage("SomeCollection")
+		localStorage: new Backbone.LocalStorage("godoStorage")
 	}),
 	
 	return {
