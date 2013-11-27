@@ -1,9 +1,10 @@
 define(function(require){
 	"use strict";
-	var $                   =   require('jquery'),
-	_                   =   require('underscore'),
-	Backbone            =   require('backbone'),
-	template        =   _.template(require('text!tpl/todoListItem.html'));
+	var 
+		$		=	require('jquery'),
+		_		=	require('underscore'),
+		Backbone	=	require('backbone'),
+		template	=	_.template(require('text!tpl/todoListItem.html'));
 
 	return Backbone.View.extend({
 		tagName: "li",
