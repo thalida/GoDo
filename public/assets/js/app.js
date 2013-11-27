@@ -10,6 +10,7 @@ require.config({
 		localstorage: "backbone.localstorage.min"
     	},
     	shim: {
+    		
     		'backbone': {
             		deps: ['underscore', 'jquery'],
             		exports: 'Backbone'
