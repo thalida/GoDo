@@ -6,7 +6,8 @@ require.config({
         tpl: '../app/templates',
                 
 		jquery: "http://code.jquery.com/jquery-latest",
-		mediaqueries: 'css3-mediaqueries'
+		mediaqueries: 'css3-mediaqueries',
+		localstorage: "backbone.localstorage.min"
     },
     shim: {
     	'backbone': {
@@ -15,6 +16,9 @@ require.config({
         },
         'underscore': {
             exports: '_'
+        },
+        'app/router':{
+        	deps: ['backbone', 'localstorage']
         }
     }
 });
