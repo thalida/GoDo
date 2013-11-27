@@ -58,8 +58,8 @@ define(function (require) {
 				newTask = $(event.target).val(),
 				keycode = event.keyCode || event.which;
 			if(keycode === 13 && newTask.length > 1 && newTask.length <= 20) {
-				$(event.target).val('').blur();
 				this.todos.create({task: newTask});
+				$(event.target).val('').focus();
 			}
 		},
 		
