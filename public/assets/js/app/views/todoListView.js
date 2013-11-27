@@ -3,7 +3,7 @@ define(function(require){
     var $                   =	require('jquery'),
         _                   =	require('underscore'),
         Backbone            =	require('backbone'),
-        template			=	_.template(require('text!tpl/todoListItem.html'));
+        template	    =	_.template(require('text!tpl/todoListItem.html'));
 
     return Backbone.View.extend({
     	tagName: "li",
@@ -41,7 +41,7 @@ define(function(require){
 	    },
 	    
 	    saveEdit: function(event){
-	    	var newTask = $(event.target).val(),
+	    	var	newTask = $(event.target).val(),
 	    		keycode = event.keyCode || event.which;
 	    	if(keycode === 13){
 	    		if(newTask == '' || newTask == null){
@@ -53,7 +53,7 @@ define(function(require){
 	    },
 	    
 	    showClose: function(event){
-	    	var $target = $(event.target),
+	    	var	$target = $(event.target),
 	    		display = ( this.$('.close').css('display') == 'none' ) ? 'block' : 'none';
 	    	this.$('.close').css({display: display});
 	    },
