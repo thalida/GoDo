@@ -1,0 +1,1 @@
+{"name":"GoDo","tagline":"A To-Do List","body":"# GoDo\r\nA Backbone and Require ToDo List, which uses local storage for persistence.\r\n\r\n## **[VIEW THE DEMO!](http://godo.thalida.com/)**\r\n\r\n## Uses\r\n* Backbone\r\n* Require\r\n* LocalStorage\r\n\r\n","google":"","note":"Don't delete this file! It's used internally to help with page regeneration."}
