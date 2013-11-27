@@ -26,8 +26,30 @@ define(function(require){
 	    	"click .status"	:	"setCompletedStatus",
 	    	"click .close"	:	"removeTask",
 	    	
+	    	"dblclick .title" : "editTask",
+	    	
+	    	"keyup	.edit"	: "saveEdit",
+	    	
 	    	"mouseover .title, .close"	:	"showClose",
 	    	"mouseout .title, .close"	:	"showClose",
+	    },
+	    
+	    editTask: function(event){
+	    	var $target = $(event.target);
+	    	$target.html('<input class="edit" type="text" value="' + $.trim($target.text()) + '" />');
+	    	this.$('.edit').focus();
+	    },
+	    
+	    saveEdit: function(event){
+	    	var newTask = $(event.target).val(),
+	    		keycode = event.keyCode || event.which;
+	    	if(keycode === 13){
+	    		if(newTask == '' || newTask == null){
+	    			this.removeTask();
+	    		}else{
+	    			this.model.save({task: newTask});
+	    		}
+	    	}
 	    },
 	    
 	    showClose: function(event){

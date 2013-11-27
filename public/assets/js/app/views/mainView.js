@@ -12,6 +12,7 @@ define(function (require) {
 
     return Backbone.View.extend({
     	initialize: function () {
+    		this.tab = 'all';
     		this.todos = new todosModel.TodosCollection();
     		
     		this.listenTo(this.todos, 'add', this.addOne);
@@ -22,12 +23,22 @@ define(function (require) {
     	},
     	
     	render: function () {
-           
+    		var allCount = this.todos.length,
+    			activeCount = this.todos.where({completed: false}).length,
+    			completedCount = this.todos.where({completed: true}).length;
+    			
+    		$('#all-count').html('(' + allCount + ')');
+    		$('#active-count').html('(' + activeCount + ')');
+    		$('#completed-count').html('(' + completedCount + ')');
+    		
            	return this;
         },
         
         events: {
-        	"keyup #createTodo" : "createTodo"
+        	"keyup #createTodo" : "createTodo",
+        	"click #allTab" : "filterShowAll",
+        	"click #completedTab" : "filterByCompleted",
+        	"click #activeTab" : "filterByActive"
         },
 
 		addOne: function(todo) {
@@ -46,6 +57,34 @@ define(function (require) {
 				$(event.target).val('').blur();
 				this.todos.create({task: newTask});
 			}
+		},
+		
+		filterShowAll: function(){
+			this.tab = 'all';
+			$("#listTodos").empty();
+			this.todos.each(this.addOne, this);
+			this.setSelectedTab();
+		},
+		
+		filterByActive: function(){
+			this.tab = 'active';
+			var collection = new todosModel.TodosCollection( this.todos.where({completed: false}) );
+			$("#listTodos").empty();
+			collection.each(this.addOne, this);
+			this.setSelectedTab();
+		},
+		
+		filterByCompleted: function(){
+			this.tab = 'completed';
+			var collection = new todosModel.TodosCollection( this.todos.where({completed: true}) );
+			$("#listTodos").empty();
+			collection.each(this.addOne, this);
+			this.setSelectedTab();
+		},
+		
+		setSelectedTab: function(){
+			$('.tab').removeClass('selected');
+			$('#' + this.tab + 'Tab').addClass('selected');
 		}
 		
     });
