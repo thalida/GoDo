@@ -23,15 +23,15 @@ define(function(require){
 	    },
 	    
 	    events: {
-	    	"click .status"	:	"setCompletedStatus",
-	    	"click .close"	:	"removeTask",
+	    	"click .status"	: "setCompletedStatus",
+	    	"click .close"	: "removeTask",
 	    	
 	    	"dblclick .title" : "editTask",
 	    	
-	    	"keyup	.edit"	: "saveEdit",
+	    	"keyup .edit" : "saveEdit",
 	    	
-	    	"mouseover .title, .close"	:	"showClose",
-	    	"mouseout .title, .close"	:	"showClose",
+	    	"mouseover .title, .close" : "showClose",
+	    	"mouseout .title, .close"  : "showClose",
 	    },
 	    
 	    editTask: function(event){
@@ -41,8 +41,8 @@ define(function(require){
 	    },
 	    
 	    saveEdit: function(event){
-	    	var	newTask = $(event.target).val(),
-	    		keycode = event.keyCode || event.which;
+	    	var newTask = $(event.target).val(),
+	    	    keycode = event.keyCode || event.which;
 	    	if(keycode === 13){
 	    		if(newTask == '' || newTask == null){
 	    			this.removeTask();
@@ -53,8 +53,8 @@ define(function(require){
 	    },
 	    
 	    showClose: function(event){
-	    	var	$target = $(event.target),
-	    		display = ( this.$('.close').css('display') == 'none' ) ? 'block' : 'none';
+	    	var $target = $(event.target),
+	    	    display = ( this.$('.close').css('display') == 'none' ) ? 'block' : 'none';
 	    	this.$('.close').css({display: display});
 	    },
 	    
