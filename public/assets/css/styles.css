@@ -6,7 +6,7 @@ body{
 	background: #ddd;
 	border: 1px solid #dddddd;
 	margin: 100px auto;
-	min-height: 500px;
+	min-height: 450px;
 	width: 300px;
 }
 
@@ -36,12 +36,13 @@ nav{
 	-webkit-box-shadow: 0px 1px #f7f7f7;
 	box-shadow: 0px 1px #f7f7f7;
 	border-radius: 6px;
-	height: 50px;
-	margin: 15px;
+	height: 45px;
+	margin: 12px 15px 15px 15px;
 	overflow: hidden;
 	width: 270px;
 }
 	nav ul{
+	        height: 100%;
 		overflow: hidden;
 	}
 		nav ul li{
@@ -60,7 +61,8 @@ nav{
 			border: 1px solid #d3d3d3;
 			cursor: pointer;
 			float: left;
-			padding: 20px 0;
+			height: 100%;
+			padding: 15px 0;
 			text-align: center;
 			width: 33.33%;
 		}
@@ -73,6 +75,10 @@ nav{
 		nav ul li.selected{
 			background: #dddddd;
 		}
+		        nav ul li span.count{
+		                color: #939393;
+		                font-size: 9px;
+		        }
 
 #createTodo{
 	-moz-box-shadow: 0px 1px #f7f7f7;
@@ -81,21 +87,18 @@ nav{
 	border: 1px solid #d3d3d3;
 	border-radius: 6px;
 	height: 45px;
-	margin: 15px;
-	padding: 0 0 0 10px;
-	width: 260px;
+	margin: 10px 15px;
+	padding: 0 0 0 15px;
+	width: 255px;
 }
 
 ul#listTodos li{	
 	background: #ffffff;
-	-moz-box-shadow: 0px 1px #f7f7f7;
-	-webkit-box-shadow: 0px 1px #f7f7f7;
-	box-shadow: 0px 1px #f7f7f7;
 	border: 1px solid #d3d3d3;
 	border-radius: 6px;
 	cursor: pointer;
 	height: 45px;
-	margin: 0 15px 10px 15px;
+	margin: 0 15px 5px 15px;
 	position: relative;
 	width: 270px;
 }
@@ -107,20 +110,31 @@ ul#listTodos li{
 		background: #bbbbbb;
 		border-radius: 6px 0 0 6px;	
 		cursor: pointer;
-		height: 43px;
-		padding: 10px 0 0 13px;
-		width: 50px;
+		height: 45px;
+		margin: -1px 0 0 0;
+		padding: 10px 0 0 10px;
+		width: 45px;
 	}
 	
 	ul#listTodos li .status.completed{
-		background: #6fbf44;
+		background: #6fbf42;
 	}
 	
 	ul#listTodos li .title{
+	        font: normal normal 12px/14px "Helvetica Neue", sans-serif;
 		height: 100%;
 		padding: 15px 0 0 10px;
 		width: 200px;
 	}
+        ul#listTodos li .title.editMode{
+                padding: 0;
+        }
+                 ul#listTodos li .title.editMode input{
+                         border:  0;
+                         font: normal normal 12px/14px "Helvetica Neue", sans-serif;
+                         height: 40px;
+                         padding: 2px 0 0 8px;
+                 }
 	
 	ul#listTodos li .close{
 		cursor: pointer;
