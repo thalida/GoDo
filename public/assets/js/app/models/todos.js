@@ -1,9 +1,9 @@
 define(function (require){
 	"use strict"
 	
-	var $					=	require('jquery'),
-		_					= 	require('underscore'),
-	    Backbone			= 	require('backbone'),
+	var	$			=	require('jquery'),
+		_			= 	require('underscore'),
+		Backbone	= 	require('backbone'),
 	    
 		Todos = Backbone.Model.extend({
 			defaults: {
