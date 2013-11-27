@@ -20,6 +20,28 @@ define(function(require){
     	render: function() {
     		this.$el.html(template(this.model.toJSON()));
     		return this;
+	    },
+	    
+	    events: {
+	    	"click .status"	:	"setCompletedStatus",
+	    	"click .close"	:	"removeTask",
+	    	
+	    	"mouseover .title, .close"	:	"showClose",
+	    	"mouseout .title, .close"	:	"showClose",
+	    },
+	    
+	    showClose: function(event){
+	    	var $target = $(event.target),
+	    		display = ( this.$('.close').css('display') == 'none' ) ? 'block' : 'none';
+	    	this.$('.close').css({display: display});
+	    },
+	    
+	    setCompletedStatus: function(){
+	    	this.model.setStatus();
+	    },
+	    
+	    removeTask: function(){
+	    	this.model.destroy();
 	    }
     });
 });

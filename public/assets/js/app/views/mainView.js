@@ -25,6 +25,10 @@ define(function (require) {
            
            	return this;
         },
+        
+        events: {
+        	"keyup #createTodo" : "createTodo"
+        },
 
 		addOne: function(todo) {
 			var view = new todoListView({model: todo});
@@ -35,8 +39,14 @@ define(function (require) {
 			this.todos.each(this.addOne, this);
 		},
 		
-        events: {
-        	
-        }
+		createTodo: function(event){
+			var newTask = $(event.target).val(),
+				keycode = event.keyCode || event.which;
+			if(keycode === 13 && newTask.length > 1 && newTask.length <= 20) {
+				$(event.target).val('').blur();
+				this.todos.create({task: newTask});
+			}
+		}
+		
     });
 });

@@ -1,3 +1,15 @@
-<li>
+<%
+var completedClass = '';
+if(completed == true){
+	completedClass = 'completed';
+}
+%>
+<div class="status <%=completedClass %>">
+	<span class="sprite sprite-checkmark"></span>
+</div>
+<div class="title">
 	<%=task %>
-</li>
+</div>
+<div class="close">
+	<span class="sprite sprite-close"></span>
+</div>

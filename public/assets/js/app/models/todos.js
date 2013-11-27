@@ -13,7 +13,7 @@ define(function (require){
 			
 			initalize: function() {},
 			
-			completeStatus: function(){
+			setStatus: function(){
 				// GET COMPLETED STATUS AND TOGGLE IT
 				var isCompleted = this.get('completed');
 				this.save({completed: !isCompleted});

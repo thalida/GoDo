@@ -12,14 +12,20 @@
 		<script data-main="/public/assets/js/app" src="/public/assets/js/require.js"></script>
 	</head>
 	<body>
-		<div id="wrapper">
-			<div id="container">
-				<header></header>
-				<nav></nav>
-				<div class="divider"></div>
-				<section id="addTodo"></section>
-				<ul id="listTodos"></ul>
-			</div>
+		<div id="container">
+			<header>
+				<span class="sprite sprite-logo"></span>
+			</header>
+			<nav>
+				<ul>
+					<li>All <span id="all-count" class="count"></span></li>
+					<li>Active <span id="active-count" class="count"></span></li>
+					<li>Completed <span id="completed-count" class="count"></span></li>
+				</ul>
+			</nav>
+			<span class="sprite sprite-divider"></span>
+			<input id="createTodo" type="text" placeholder="What needs to be done?" />
+			<ul id="listTodos"></ul>
 		</div>
 	</body>
 </html>
