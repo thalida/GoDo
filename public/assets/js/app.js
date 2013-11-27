@@ -17,12 +17,15 @@ require.config({
         'underscore': {
             exports: '_'
         },
-        'app/views/main':{
-        	deps: ['backbone', 'localstorage']
+        'localstorage':{
+        	deps: ['backbone']
+        },
+        'app/views/mainView':{
+        	deps: ['localstorage'] // Makes sure these two (and their deps) load before the app/views/loads
         }
     }
 });
 
-require(['jquery', 'backbone', 'app/views/main'], function ($, Backbone, GoDoView) {
+require(['jquery', 'backbone', 'app/views/mainView'], function ($, Backbone, GoDoView) {
 	new GoDoView({el: $('body')}).render();
 });
