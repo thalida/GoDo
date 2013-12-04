@@ -2,7 +2,7 @@ define(function (require) {
 	"use strict";
 	var	
 		$		=	require('jquery'),
-		_       	=	require('underscore'),
+		_       		=	require('underscore'),
 		Backbone	=	require('backbone'),
 		todosModel	=	require('app/models/todos'),
 		todoListView	=	require('app/views/todoListView'),

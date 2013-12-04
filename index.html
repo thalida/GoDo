@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>GoDo</title>
+		<title>ToDo</title>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="utf-8" />
@@ -12,20 +12,17 @@
 		<script data-main="/public/assets/js/app" src="/public/assets/js/require.js"></script>
 	</head>
 	<body>
-	        <a href="https://github.com/thalida/GoDo" target="_blank">GoDo Github Repo</a>
-		<div id="container">
+		<section id="credits">
+			Made with love by <a href="https://thalida.com" target="_blank">thalida</a>
+			View the repo on <a href="https://github.com/thalida/GoDo" target="_blank">github</a>
+			Check it out on <a href="#" target="_blank">dribbble</a>
+		</section>
+	     	<section id="container">
 			<header>
-				<span class="sprite sprite-logo"></span>
+				<span class="icon icon-check-large"></span>
 			</header>
-			<nav>
-				<ul>
-					<li id="allTab" class="tab selected">All <span id="all-count" class="count"></span></li>
-					<li id="activeTab" class="tab">Active <span id="active-count" class="count"></span></li>
-					<li id="completedTab" class="tab">Complete <span id="completed-count" class="count"></span></li>
-				</ul>
-			</nav>
-			<span class="sprite sprite-divider"></span>
-			<input id="createTodo" type="text" placeholder="What needs to be done?" />
+			<div id="menu"></div>
+			<input id="createTodo" type="text" placeholder="Create a new todo..." />
 			<ul id="listTodos"></ul>
 		</div>
 	</body>
