@@ -5,11 +5,20 @@ if(completed == true){
 }
 %>
 <div class="status <%=completedClass %>">
-	<span class="sprite sprite-checkmark"></span>
+	<span class="icon icon-checkmark"></span>
 </div>
-<div class="title">
+<div class="title <%=completedClass %>">
 	<%=task %>
 </div>
-<div class="close">
-	<span class="sprite sprite-close"></span>
+
+<button type="button" class="btn btn-default edit-btn">
+	<span class="icon icon-pencil"></span>
+</button>
+
+<div id="list-form-<%=index %>" class="accordion-form">
+	<input class="edit edit-title" type="text" value="<%=task %>" />
+	<select  class="category-dropdown selectpicker show-menu-arrow" data-container="body" data-size="5" data-width="250px" data-show-subtext="true" data-header="Select a todo list">
+		<option id="cat_1" value="1">Category</option>
+	</select>
+	<a href="#" class="deleteTodo">Delete this todo</a>
 </div>

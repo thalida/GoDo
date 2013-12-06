@@ -7,11 +7,15 @@
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
 		<link href="/public/assets/css/resets.css" type="text/css" rel="stylesheet">
+		<link href="/public/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/public/assets/bootstrap/css/bootstrap-select.css" rel="stylesheet">
 		<link href="/public/assets/css/styles.css" type="text/css" rel="stylesheet" media="screen" />
 		<script data-main="/public/assets/js/app" src="/public/assets/js/require.js"></script>
 	</head>
 	<body>
+		<strong style="color:#ff0000; font-size: 20px;">UNDERCONSTRUCTION!</strong>
 		<section id="credits">
 			Made with love by <a href="https://thalida.com" target="_blank">thalida</a>
 			View the repo on <a href="https://github.com/thalida/GoDo" target="_blank">github</a>
@@ -19,11 +23,28 @@
 		</section>
 	     	<section id="container">
 			<header>
-				<span class="icon icon-check-large"></span>
+				<span class="icon icon-checkmark-large"></span>
 			</header>
-			<div id="menu"></div>
-			<input id="createTodo" type="text" placeholder="Create a new todo..." />
+			<div id="menu" class="group"></div>
+			<div id="createWrapper">
+				<input id="createTodo"  class="placeholder" type="text" value="Create a new todo..." />
+			</div>
 			<ul id="listTodos"></ul>
+			<footer>
+				<div id="statsHeader">
+					<span class="icon icon-stats"></span>Stats
+				</div>
+				<div id="statsWrapper">
+					<div class="stat">
+						<span class="stat-icon icon icon-checkmark"></span>
+						<span id="statsCompleted" class="stat-number">0</span>
+					</div>
+					<div class="stat">
+						<span class="stat-icon icon icon-list"></span>
+						<span id="statsTotal" class="stat-number">0</span>
+					</div>
+				</div>
+			</footer>
 		</div>
 	</body>
 </html>

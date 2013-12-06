@@ -1,0 +1,19 @@
+<select id="categorySelectMenu" class="selectpicker show-menu-arrow" data-container="body" data-live-search="true" data-size="5" data-width="280px" data-show-subtext="true" data-header="Select or search for a todo list...">
+	<% 
+	_.each(categories, function(cateogry){ 
+		var	remaining = cateogry.todos.where({completed: false}).length,
+			total = cateogry.todos.length;
+	%>
+	<option id="cat_<%= cateogry.id %>" value="<%= cateogry.id %>" data-subtext="(<%=remaining %>/<%=total %> Remaining)"><%= cateogry.name %></option>
+	<% }); %>
+</select>
+<ul class="menu">
+	<li>
+		<a href="#"><span class="icon icon-menu"></span></a>
+		<ul>
+			<li><a href="#">Create a list</a></li>
+			<li><a href="#">Change Name</a></li>
+			<li><a href="#">Delete List</a></li>
+		</ul>
+	</li>
+</ul>

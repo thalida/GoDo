@@ -1,177 +1,392 @@
 body{
-	font: normal normal 12px/14px "Helvetica Neue", sans-serif;
+	color: #ffffff;
+	font: normal normal 12px/14px "Roboto", sans-serif;
+}
+*:focus {
+      outline:0px !important;
+}
+.group:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.dropit {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.dropit .dropit-trigger { position: relative; }
+.dropit .dropit-submenu {
+	position: absolute;
+	top: 100%;
+	left: 0; /* dropdown left or right */
+	z-index: 1000;
+	display: none;
+	min-width: 150px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.dropit .dropit-open .dropit-submenu { display: block; }
+
+.dropdown-menu.open .popover-title{
+	color: #aaa;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 23px;
+	text-transform: uppercase;	
+}
+
+.dropdown-menu.open .dropdown-menu.inner li a:hover,
+.dropdown-menu.open .dropdown-menu.inner li a:focus{
+	background: rgba(0,0,0,0.1);
+	color: #333;
+	text-decoration: none;
+}
+.bootstrap-select.open > .btn{
+	box-shadow: inset 0 3px 0px rgba(0, 0, 0, 0.1);
 }
 
 #container{
-	background: #ddd;
-	border: 1px solid #dddddd;
+	background: #eb5141;
+	border-radius: 5px;
+	box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
 	margin: 100px auto;
-	min-height: 450px;
-	width: 300px;
+	min-height: 250px;
+	height: auto;
+	padding: 10px 0 0 0;
+	position: relative;
+	width: 350px;
 }
 
 header{
-	background-image: -webkit-gradient(
-		linear,
-		left top,
-		left bottom,
-		color-stop(0.18, #FAFAFA),
-		color-stop(1, #DDDDDD)
-	);
-	background-image: -o-linear-gradient(bottom, #FAFAFA 18%, #DDDDDD 100%);
-	background-image: -moz-linear-gradient(bottom, #FAFAFA 18%, #DDDDDD 100%);
-	background-image: -webkit-linear-gradient(bottom, #FAFAFA 18%, #DDDDDD 100%);
-	background-image: -ms-linear-gradient(bottom, #FAFAFA 18%, #DDDDDD 100%);
-	background-image: linear-gradient(to bottom, #FAFAFA 18%, #DDDDDD 100%);
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: inset 4px 4px 0px rgba(0,0,0,0.1);
 	height: 50px;
-	padding: 15px;
-	width: 100%;
+	margin: 0 10px 0 10px;
+	padding: 15px 0 0 0;
+	position: relative;
+	width: 330px;
 }
 	header span{
-		margin:  0 auto;
+		margin: 0 auto;
+		position: relative;
 	}
 
-nav{
-	-moz-box-shadow: 0px 1px #f7f7f7;
-	-webkit-box-shadow: 0px 1px #f7f7f7;
-	box-shadow: 0px 1px #f7f7f7;
-	border-radius: 6px;
-	height: 45px;
-	margin: 12px 15px 15px 15px;
-	overflow: hidden;
-	width: 270px;
-}
-	nav ul{
-	        height: 100%;
-		overflow: hidden;
-	}
-		nav ul li{
-			background-image: -webkit-gradient(
-				linear,
-				left top,
-				left bottom,
-				color-stop(0.18, #FEFEFE),
-				color-stop(1, #DDDDDD)
-			);
-			background-image: -o-linear-gradient(bottom, #FEFEFE 18%, #DDDDDD 100%);
-			background-image: -moz-linear-gradient(bottom, #FEFEFE 18%, #DDDDDD 100%);
-			background-image: -webkit-linear-gradient(bottom, #FEFEFE 18%, #DDDDDD 100%);
-			background-image: -ms-linear-gradient(bottom, #FEFEFE 18%, #DDDDDD 100%);
-			background-image: linear-gradient(to bottom, #FEFEFE 18%, #DDDDDD 100%);
-			border: 1px solid #d3d3d3;
-			cursor: pointer;
-			float: left;
-			height: 100%;
-			padding: 15px 0;
-			text-align: center;
-			width: 33.33%;
-		}
-		nav ul li:first-child{
-			border-radius: 6px 0 0 6px;	
-		}
-		nav ul li:last-child{
-			border-radius: 0 6px 6px 0;
-		}
-		nav ul li.selected{
-			background: #dddddd;
-		}
-		        nav ul li span.count{
-		                color: #939393;
-		                font-size: 9px;
-		        }
-
-#createTodo{
-	-moz-box-shadow: 0px 1px #f7f7f7;
-	-webkit-box-shadow: 0px 1px #f7f7f7;
-	box-shadow: 0px 1px #f7f7f7;
-	border: 1px solid #d3d3d3;
-	border-radius: 6px;
-	height: 45px;
-	margin: 10px 15px;
-	padding: 0 0 0 15px;
-	width: 255px;
-}
-
-ul#listTodos li{	
-	background: #ffffff;
-	border: 1px solid #d3d3d3;
-	border-radius: 6px;
-	cursor: pointer;
-	height: 45px;
-	margin: 0 15px 5px 15px;
+#menu{
+	margin: 50px 10px 0 10px;
 	position: relative;
-	width: 270px;
 }
-	ul#listTodos li .status, ul#listTodos li .title{
+	#menu .btn-group.bootstrap-select{
 		float: left;
 	}
-	
-	ul#listTodos li .status{
-		background: #bbbbbb;
-		border-radius: 6px 0 0 6px;	
-		cursor: pointer;
-		height: 45px;
-		margin: -1px 0 0 0;
-		padding: 10px 0 0 10px;
-		width: 45px;
+	#menu .btn.dropdown-toggle.btn-default {
+		background: rgba(0,0,0,0.2);
+		border: 0;
+		border-radius: 5px 0px 0px 5px;
+		color: #fff;
+		font: 300 16px "Roboto",sans-serif;
+		height: 50px;
 	}
-	
-	ul#listTodos li .status.completed{
-		background: #6fbf42;
-	}
-	
-	ul#listTodos li .title{
-	        font: normal normal 12px/14px "Helvetica Neue", sans-serif;
-		height: 100%;
-		padding: 15px 0 0 10px;
-		width: 200px;
-	}
-        ul#listTodos li .title.editMode{
-                padding: 0;
-        }
-                 ul#listTodos li .title.editMode input{
-                         border:  0;
-                         font: normal normal 12px/14px "Helvetica Neue", sans-serif;
-                         height: 40px;
-                         padding: 2px 0 0 8px;
-                 }
-	
-	ul#listTodos li .close{
-		cursor: pointer;
-		display: none;
-		float: right;
-		margin: 13px 10px;
+	#menu .filter-option .text-muted {
+		color: rgba(255,255,255,0.7);
+		display: block;
+		font-size: 10px;
+		margin: 4px 10px 0 0;
+		padding: 0;
 		position: absolute;
 		right: 0;
+		text-transform: uppercase;
 		top: 0;
 	}
+	#menu .menu.dropit{
+		float: left;
+		height: 50px;
+		width: 50px;
+	}
+		#menu .menu.dropit .dropit-trigger{
+			background: rgba(0,0,0,0.4);
+			border-radius: 0 5px 5px 0;
+			float: left;
+			height: 50px;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			width: 50px;
+		}
+			#menu .menu.dropit .dropit-trigger a {
+				display: block;
+				height: 100%;
+				width: 100%;
+			}
+				#menu .menu.dropit .dropit-trigger a span{
+					display: block;
+					margin: 20px 17px;
+					position: absolute;
+				}
+		#menu .menu.dropit .dropit-trigger.dropit-open{
+			background: #fff;
+		}
+			#menu .menu.dropit .dropit-trigger.dropit-open a span{	
+				background-position: -113px 0;
+			}
+		#menu .menu.dropit ul { display: none; }
+		#menu .menu.dropit ul.dropit-submenu {
+			background-color: #fff;
+			border-radius: 3px;
+			box-shadow: 0px 3px 0px rgba(0,0,0,0.1);
+			margin: -6px 0 0 0;
+			padding: 6px 0;
+			position: absolute;
+			width: 150px;
+			z-index: 50;
+		} 
+			#menu .menu.dropit ul.dropit-submenu a {
+				display: block;
+				font-size: 14px;
+				line-height: 25px;
+				color: #333;
+				padding: 0 18px;
+			}
+			#menu .menu.dropit ul.dropit-submenu a:hover {
+				background: rgba(0,0,0,0.1);
+				color: #333;
+				text-decoration: none;
+			}
+#createWrapper{
+	height: 50px;
+	margin: 20px 10px 0px;
+	overflow: hidden;
+	position: relative;
+	width: 330px;
+}
+	#createWrapper  span{
+		cursor: pointer;
+		display: block;
+		position: absolute;
+		right: 15px;
+		top: 16px;
+	}
+	#createWrapper #createTodo{
+		background: rgba(255,255,255,0.2);
+		border: 2px solid rgba(255,255,255,0.2);
+		border-radius: 5px;
+		color: #fff;
+		font: 300 16px "Roboto", sans-serif;
+		height: 45px;
+		padding: 0 0 0 10px;
+		width: 330px;
+	}
+	#createWrapper #createTodo.placeholder{
+		color: rgba(255,255,255,0.5);
+	}
 
-.sprite{
+ul#listTodos{
+	margin: 0 0 50px 0;
+	position: relative;
+	width: 350px;
+}
+	ul#listTodos li{	
+		border-bottom: 2px solid rgba(0,0,0,0.05);
+		cursor: pointer;
+		min-height: 50px;
+		margin: 0;
+		position: relative;
+		width: 100%;
+	}
+		ul#listTodos li .status, ul#listTodos li .title{
+			float: left;
+		}
+		
+		ul#listTodos li .status{
+			cursor: pointer;
+			height: 50px;
+			padding: 20px 0 0 20px;
+			width: 50px;
+		}
+		ul#listTodos li .status span{
+			opacity: 0.5;
+		}
+		ul#listTodos li .status.completed span{
+			opacity: 1;
+		}
+		
+		ul#listTodos li .title{
+			font: 300 16px/50px "Roboto", sans-serif;
+			height: 100%;
+			overflow: hidden;
+			text-decoration: none;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			width: 250px;
+		}
+			ul#listTodos li .title.completed{
+				text-decoration: line-through;
+			}
+		ul#listTodos li .title.editMode{
+			padding: 0;
+		}
+			ul#listTodos li .title.editMode input{
+				background: transparent;
+				border: 0;
+				border-bottom: 2px solid rgba(255,255,255,0.6);
+				color: #fff;
+				font: 300 16px "Roboto", sans-serif;
+				height: 50px;
+				margin: -4px 0 0 -1px;
+			}
+		
+		ul#listTodos li .edit-btn{
+			background: transparent;
+			border: 0;
+			cursor: pointer;
+			float: right;
+			height: 30px;
+			margin: 13px 10px;
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 30px;
+		}
+			.btn.btn-default.edit-btn span{
+				opacity: 0.5;
+			}
+			.btn.btn-default.edit-btn span:hover{
+				opacity: 1;
+			}
+		ul#listTodos li .accordion-form{
+			display: none;
+			height: auto;
+			margin: 0px 50px 20px 50px;
+			position: relative;
+		}
+			ul#listTodos li .accordion-form .edit-title {
+				background: transparent;
+				border: 0;
+				border-bottom: 3px solid #fff;
+				color: #fff;
+				font-size: 16px;
+				font-weight: 300;
+				height: 35px;
+				margin: 10px 0 10px 0;
+				padding: 0;
+				width: 250px;
+			}
+
+			ul#listTodos li .accordion-form a.deleteTodo{
+				border: 1px solid #fff;
+				border-radius: 3px;
+				color: #fff;
+				display: block;
+				font-size: 14px;
+				height: 35px;
+				padding: 10px;
+				text-align: center;
+				text-decoration: none;
+				width: 250px;
+			}
+			ul#listTodos li .accordion-form a.deleteTodo:hover{				
+				background: #fff;
+				border: 1px solid #fff;
+				color: #333;
+			}
+			ul#listTodos li .accordion-form .btn.dropdown-toggle{
+				background: transparent;
+				border: 1px solid #fff;
+				color: #fff;
+			}
+footer{
+	background: rgba(0,0,0,0.05);
+	bottom: 0;
+	font-size: 15px;
+	font-weight: 500;
+	height: 50px;
+	left: 0;
+	line-height: 30px;
+	overflow: hidden;
+	padding: 10px;
+	position: relative;
+	width: 100%;
+}
+	footer #statsHeader{
+		float: left;
+		overflow: hidden;
+		text-align: right;
+		width: 80px;
+	}
+	footer #statsHeader * {
+		float: left;
+	}
+		footer #statsHeader span{
+			margin: 10px 15px 0 10px;
+		}
+	footer #statsWrapper{
+		float: right;
+		height: 30px;
+		width: 200px;
+	}
+		footer #statsWrapper .stat{
+			border: 1px solid rgba(255,255,255,0.2);
+			border-radius: 5px;
+			float: right;
+			height: 30px;
+			margin: 0 0 0 10px;
+			overflow: hidden;
+			padding: 10px;
+			width: 80px;
+		}
+			footer #statsWrapper .stat .stat-icon{
+				float: left;
+			}
+			footer #statsWrapper .stat .stat-number{
+				float: right;
+				line-height: 10px;
+			}
+
+.icon{
 	background-image: url(images/sprite.png);
 	background-repeat: no-repeat;
+	display: block;
 }
-	.sprite.sprite-logo{
+	.icon.icon-checkmark-large{
 		background-position: 0 0;
-		display: block;
-		height: 37px;
-		width: 93px;
+		height: 25px;
+		width: 33px;
 	}
-	.sprite.sprite-checkmark{
-		background-position: -95px 0;
-		display: block;
-		height: 23px;
-		width: 25px;
+	.icon.icon-menu{
+		background-position: -33px 0;
+		height: 10px;
+		width: 14px;
 	}
-	.sprite.sprite-close{
-		background-position: -122px 0;
-		display: block;
-		height: 17px;
-		width: 17px;
+	.icon.icon-menu-hover{
+		background-position: -113px 0;
+		height: 10px;
+		width: 14px;
 	}
-	.sprite.sprite-divider{
-		background-position: 0 -37px;
-		display: block;
-		height: 3px;
-		width: 300px;
+	.icon.icon-pencil{
+		background-position: -47px 0;
+		height: 16px;
+		width: 16px;
 	}
-	
+	.icon.icon-checkmark{
+		background-position: -63px 0;
+		height: 12px;
+		width: 12px;
+	}
+	.icon.icon-close{
+		background-position: -75px 0;
+		height: 8px;
+		width: 8px;
+	}
+	.icon.icon-stats{
+		background-position: -83px 0;
+		height: 10px;
+		width: 16px;
+	}
+	.icon.icon-list{
+		background-position: -99px 0;
+		height: 10px;
+		width: 16px;
+	}
