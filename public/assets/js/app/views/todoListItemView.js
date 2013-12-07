@@ -29,11 +29,22 @@ define(function(require){
 
 		editTodo: function( event ){
 			var	that = this,
-				index = this.model.get('index'),
-				$accordion = that.$('.accordion-form');
+				$accordion = that.$('.accordion-form'),
+				hideOtherAccordions = !( $accordion.is(":visible") );
+
+			if( hideOtherAccordions === true ){
+				$('.accordion-form').slideUp({duration: 500, complete: this.toggleAccordion });
+			}else{
+				this.toggleAccordion();
+			}
+		},
+
+		toggleAccordion: function(){
+			var 	that = this,
+				$accordion = this.$('.accordion-form');
 			$accordion.slideToggle({duration: 500, complete: function(){
-				var isVisible = $accordion.is(":visible");
-				var $title = that.$('.title');
+				var	isVisible = $accordion.is(":visible"),
+					$title = that.$('.title');
 				if( isVisible ){
 					$title.hide();
 					$accordion.find('.edit-title').focus();

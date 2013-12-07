@@ -250,6 +250,10 @@ ul#listTodos{
 			top: 0;
 			width: 30px;
 		}
+			ul#listTodos li .edit-btn:focus, ul#listTodos li .edit-btn:active{
+				border: 0;
+				box-shadow: none;
+			}
 			.btn.btn-default.edit-btn span{
 				opacity: 0.5;
 			}

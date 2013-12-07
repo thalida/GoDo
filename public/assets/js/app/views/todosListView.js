@@ -58,6 +58,8 @@ define(function (require) {
 		},
 	
 		addOne: function(todo) {
+			var categoriesCollection = new TodosModel.CategoriesCollection();
+			todo.categoriesList = categoriesCollection;
 			var view = new todoListItemView({model: todo});
 			this.$list.append(view.render().el);
 		},

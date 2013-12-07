@@ -18,7 +18,12 @@ if(completed == true){
 <div id="list-form-<%=index %>" class="accordion-form">
 	<input class="edit edit-title" type="text" value="<%=task %>" />
 	<select  class="category-dropdown selectpicker show-menu-arrow" data-container="body" data-size="5" data-width="250px" data-show-subtext="true" data-header="Select a todo list">
-		<option id="cat_1" value="1">Category</option>
+		<% 
+		_.each(categoriesList, function(thisCateogry){ 
+			var selected = (category == thisCateogry.id) ? 'selected="selected"' : '';
+		%>
+			<option id="cat_<%= thisCateogry.id %>" value="<%= thisCateogry.id %>" <%=selected %>><%= thisCateogry.name %></option>
+		<% }); %>
 	</select>
 	<a href="#" class="deleteTodo">Delete this todo</a>
 </div>
