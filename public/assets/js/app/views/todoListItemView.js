@@ -11,7 +11,9 @@ define(function(require){
 		
 		render: function() {
 			this.category = this.model.get('category');
-			this.model.jsonData = this.model.toJSON();
+			
+			var categoriesCollection = new TodosModel.CategoriesCollection();
+			this.model.set({'categories': categoriesCollection});
 			this.$el.html(template(this.model.toJSON()));
 			return this;
 		},
