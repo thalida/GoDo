@@ -20,9 +20,9 @@ if(completed == true){
 	<select  class="category-dropdown selectpicker show-menu-arrow" data-container="body" data-size="5" data-width="250px" data-show-subtext="true" data-header="Select a todo list">
 		<% 
 		_.each(categories, function(thisCateogry){ 
-			var selected = (category == thisCateogry.id) ? 'selected="selected"' : '';
+			var selected = (category == thisCateogry.attributes.id) ? 'selected="selected"' : '';
 		%>
-			<option id="cat_<%= thisCateogry.id %>" value="<%= thisCateogry.id %>" <%=selected %>><%= thisCateogry.name %></option>
+			<option id="cat_<%= thisCateogry.attributes.id %>" value="<%= thisCateogry.attributes.id %>" <%=selected %>><%= thisCateogry.attributes.name %></option>
 		<% }); %>
 	</select>
 	<a href="#" class="deleteTodo">Delete this todo</a>

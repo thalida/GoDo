@@ -8,34 +8,22 @@ define(function (require) {
 		initialize: function () {
 			_.bindAll(this);
 
-			this.listenTo(this.model, 'all', this.logEvent);
-
-			//this.listenTo(this.model, 'add:todos', this.addOne);
-			//this.listenTo(this.model, 'remove:todos', this.removeTodos);
-
-			this.listenTo(this.model, 'relational:change:todos', this.changeTodos);
+			this.listenTo(this.model, 'add:todos', this.render);
 			this.listenTo(this.model, 'change:todos', this.render);
-			Backbone.eventAggregator.on('removeTodo', this.removeTodo);
-			//this.listenTo(this.model, 'remove:todos', this.render);
+			this.listenTo(this.model, 'remove:todos', this.removeTodo);
 
-			//this.listenTo(this.model, 'relational:remove:todos', this.render);
-			//this.listenTo(this.model, 'relational:change:todos', this.render);
-
-			//this.listenTo(this.model, 'add', this.render);
-			//this.listenTo(this.model, 'change', this.render);
-			//this.listenTo(this.model, 'reset', this.render);
+			this.listenTo(this.model, 'add', this.render);
+			this.listenTo(this.model, 'change', this.render);
+			this.listenTo(this.model, 'reset', this.render);
+			this.listenTo(this.model, 'all', this.render);
 		},
 		
-		render: function (eventName) {
-			console.log("RENDERING ("+ eventName +")  --->");
+		render: function () {
+			console.log( this );
 			this.todos = this.model.get( 'todos' );
 			this.$list = $('#listTodos');
 			this.$list.empty();
 			this.addAll();
-
-			console.log( this );
-			console.log( this.model.get('todos') );
-			console.log('<---');
 
 			var 	allCount = this.todos.length,
 				completedCount = this.todos.where({completed: true}).length;
@@ -65,11 +53,6 @@ define(function (require) {
 		addAll: function(){
 			this.todos.each(this.addOne, this);
 		},
-
-		removeTodo: function(todo){
-			this.model.get('todos').remove( todo );
-			this.model.save();
-		},
 		
 		focusCreateInput: function(event){
 			var $target = $(event.target);
@@ -93,24 +76,16 @@ define(function (require) {
 			}
 		},
 
-		submitByIcon: function(event){
-			var newTask = $('#createTodo').val();
-			if(newTask.length > 1 && newTask.length <= 20) {
-				this.createTodo( newTask );
-			}
-		},
-
 		createTodo: function( task ){
 			var newTodo = new TodosModel.Todos({task: task, category: this.model, index: this.todos.length + 1});
 			this.model.save();
 			$('#createTodo').val('').focus();
 		},
 
-		logEvent: function( eventName ){
-			console.log('<<<------------->>>');
-			console.log('EVENT :: ALL => ' + eventName);
-			console.log(eventName);
-			console.log('-------------');
+		removeTodo: function( todo ){
+			todo.destroy();
+			this.model.save();
+			this.render();
 		}
 	});
 });

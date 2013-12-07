@@ -4,10 +4,9 @@ define(function (require){
 	require('localstorage');
 
 	var
-		storage = new Backbone.LocalStorage(window.store || "todoStorage"),
+		storage = new Backbone.LocalStorage("todoListStorage"),
 		Todos = Backbone.RelationalModel.extend({
 			idAttribute: '_id',
-			localStorage: storage,
 			defaults: {
 				task: null,
 				completed: false,
@@ -49,6 +48,8 @@ define(function (require){
 			model: Category,
 			localStorage: storage
 		});
+
+	console.log( storage );
 	
 	return {
 		Todos			:	Todos,

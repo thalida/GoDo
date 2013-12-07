@@ -1,6 +1,7 @@
 define(function(require){
 	"use strict";
-	var 	template	=	_.template(require('text!tpl/todoListItem.html'));
+	var 	template	=	_.template(require('text!tpl/todoListItem.html')),
+		el = {};
 
 	return Backbone.View.extend({
 		tagName: "li",
@@ -11,49 +12,50 @@ define(function(require){
 		
 		render: function() {
 			this.category = this.model.get('category');
-			
-			var categoriesCollection = new TodosModel.CategoriesCollection();
-			this.model.set({'categories': categoriesCollection});
+			this.model.set({'categories': this.category.collection.models});
 			this.$el.html(template(this.model.toJSON()));
+			this.$accordion = this.$('.accordion-form');
+			this.$title = this.$('.title');
+
+			$('.selectpicker').selectpicker();
+
 			return this;
 		},
 		
 		events: {
-			//"blur .edit-title" : "saveEdit",
-		        
 			"click .status" : "setCompletedStatus",
 			"click .title" : "setCompletedStatus", 
 			"click .edit-btn" : "editTodo",
-			"click deleteTodo" : "remove",
+			"click .deleteTodo" : "removeTodo",
 			
 			"keyup .edit-title" : "saveOnEnter"
 		},
 
 		editTodo: function( event ){
 			var	that = this,
-				$accordion = that.$('.accordion-form'),
-				hideOtherAccordions = !( $accordion.is(":visible") );
-
-			if( hideOtherAccordions === true ){
-				$('.accordion-form').slideUp({duration: 500, complete: this.toggleAccordion });
+				hideOtherAccordions = !( this.$accordion.is(":visible") );
+			if( hideOtherAccordions == true ){
+				$('.accordion-form').slideUp();
+				$('.title').show();
+				that.showAccordion();
 			}else{
-				this.toggleAccordion();
+				that.hideAccordion();
 			}
 		},
 
-		toggleAccordion: function(){
-			var 	that = this,
-				$accordion = this.$('.accordion-form');
-			$accordion.slideToggle({duration: 500, complete: function(){
-				var	isVisible = $accordion.is(":visible"),
-					$title = that.$('.title');
-				if( isVisible ){
-					$title.hide();
-					$accordion.find('.edit-title').focus();
-				}else{
-					that.model.get('category').save();
-					$title.show();
-				}
+		showAccordion: function(){
+			var that = this;
+			this.$accordion.slideDown({duration: 500, complete: function(){
+				that.$title.hide();
+				that.$accordion.find('.edit-title').focus();
+			}});
+		},
+
+		hideAccordion: function(){
+			var that = this;
+			this.$accordion.slideUp({duration: 500, complete: function(){
+				that.model.get('category').save();
+				that.$title.show();
 			}});
 		},
 
@@ -81,10 +83,9 @@ define(function(require){
 			this.category.save();
 		},
 
-		remove: function(){
-			Backbone.eventAggregator.trigger('removeTodo', this.model);
-			this.model.destroy();
-			//this.category.save();
+		removeTodo: function( event ){
+			event.preventDefault();
+			this.category.get('todos').remove(this.model);
 		}
 	});
 });

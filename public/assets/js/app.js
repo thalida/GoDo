@@ -25,9 +25,10 @@ require.config({
 			exports: 'Backbone'
 		},
 		'backbone-relational': {
-			deps: ['backbone'],
+			deps: ['backbone', 'localstorage'],
 			exports: 'Backbone'
 		},
+		'localstorage': ['backbone'],
 		'app/models/todos': ['backbone-relational','localstorage'],
 		'app/router': ['jqueryui', 'bootstrapSelect', 'localstorage', 'app/models/todos','dropit']
 	}
