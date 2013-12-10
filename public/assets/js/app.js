@@ -57,24 +57,27 @@ require(['jquery', 'backbone', 'app/router', 'jqueryui', 'backbone-relational', 
 		showSelectionPalette: true,
 
 		change: function( color ){
-			$('#container').animate({'backgroundColor': color.toHexString()}, {duration: 500, queue: false});
-			//$('#container').css({'backgroundColor': color.toHexString()});
+			setColor({color: color.toHexString()});
 			localStorage.setItem('todoListColorSelected',color.toHexString());
 		},
 		hide: function( color ){
-			$('#container').animate({'backgroundColor': color.toHexString()}, {duration: 500, queue: false});
-			//$('#container').css({'backgroundColor': color.toHexString()});
+			setColor({color: color.toHexString()});
 		},
 		move: function( color ){
-			$('#container').animate({'backgroundColor': color.toHexString()}, {duration: 500, queue: false});
-			//$('#container').css({'backgroundColor': color.toHexString()});
+			setColor({color: color.toHexString()});
 		}
 	});
 
 	var savedColor = localStorage.getItem('todoListColorSelected') || '#eb5141';
-	$('#container').animate({'backgroundColor': savedColor}, {duration: 1000, queue: false});
 	$("#colorPicker").spectrum("set", savedColor);
+	setColor({color: savedColor, duration: 1000});
 
 	var router = new Router();
 	Backbone.history.start();
+
+	function setColor(opts){
+		opts.duration = opts.duration || 500;
+		$('#container').animate({'backgroundColor': opts.color}, {duration: opts.duration, queue: false});
+		$('#credits').find('span').find('a').css({'color': opts.color});
+	}
 });
