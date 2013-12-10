@@ -8,7 +8,7 @@ require.config({
 		jquery: "http://code.jquery.com/jquery-latest",
 		jqueryui: "http://code.jquery.com/ui/1.10.3/jquery-ui.min",
 		mediaqueries: 'css3-mediaqueries',
-		localstorage: "backbone.localstorage.min",
+		localstorage: "backbone.localstorage",
 		bootstrap: '/public/assets/bootstrap/js/bootstrap.min',
 		bootstrapSelect: '/public/assets/bootstrap/js/bootstrap-select.min',
 	},
@@ -28,7 +28,6 @@ require.config({
 			deps: ['backbone', 'localstorage'],
 			exports: 'Backbone'
 		},
-		'localstorage': ['backbone'],
 		'app/models/todos': ['backbone-relational','localstorage'],
 		'app/router': ['jqueryui', 'bootstrapSelect', 'localstorage', 'app/models/todos','dropit']
 	}

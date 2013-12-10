@@ -86,6 +86,7 @@ define(function(require){
 		removeTodo: function( event ){
 			event.preventDefault();
 			this.category.get('todos').remove(this.model);
+			this.category.save();
 		}
 	});
 });

@@ -8,18 +8,16 @@ define(function (require) {
 		initialize: function () {
 			_.bindAll(this);
 
-			this.listenTo(this.model, 'add:todos', this.render);
+			this.listenTo(this.model, 'add:todos', this.addOne);
 			this.listenTo(this.model, 'change:todos', this.render);
 			this.listenTo(this.model, 'remove:todos', this.removeTodo);
 
 			this.listenTo(this.model, 'add', this.render);
 			this.listenTo(this.model, 'change', this.render);
 			this.listenTo(this.model, 'reset', this.render);
-			this.listenTo(this.model, 'all', this.render);
 		},
 		
-		render: function () {
-			console.log( this );
+		render: function (eventName) {
 			this.todos = this.model.get( 'todos' );
 			this.$list = $('#listTodos');
 			this.$list.empty();
@@ -77,15 +75,14 @@ define(function (require) {
 		},
 
 		createTodo: function( task ){
-			var newTodo = new TodosModel.Todos({task: task, category: this.model, index: this.todos.length + 1});
+			var	index = this.model.autoIncrement(),
+				newTodo = new TodosModel.Todos({task: task, category: this.model, index: index});
 			this.model.save();
 			$('#createTodo').val('').focus();
 		},
 
 		removeTodo: function( todo ){
 			todo.destroy();
-			this.model.save();
-			this.render();
 		}
 	});
 });

@@ -12,8 +12,8 @@ define(function (require){
 				completed: false,
 				index: 1
 			},
-			initalize: function() {},
-		
+			initialize: function() {
+			},
 			setStatus: function(){
 				// GET COMPLETED STATUS AND TOGGLE IT
 				var isCompleted = this.get('completed');
@@ -42,14 +42,30 @@ define(function (require){
 				json.cid = this.cid;
 				json.id = this.id;
 				return json;
+			},
+			getTodos: function(){
+				return this.get('todos').models;
+			},
+			getTodosCompleted: function() {
+				return this.get( 'todos' ).where({completed: true});
+			},
+			getTodosNotCompleted: function() {
+				return this.get( 'todos' ).where({completed: false});
+			},
+			autoIncrement: function() {
+				if (!this.getTodos().length || this.getTodos().length === 0) return 1;
+				var indexes = [];
+				_.each(this.getTodos(), function(todo){ indexes.push(todo.get('index')); });
+				return  _.max(indexes) + 1;
+			},
+			comparator: function(todo) {
+				return todo.get('index');
 			}
 		}),
 		CategoriesCollection = Backbone.Collection.extend({
 			model: Category,
 			localStorage: storage
 		});
-
-	console.log( storage );
 	
 	return {
 		Todos			:	Todos,
