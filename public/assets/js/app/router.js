@@ -23,7 +23,9 @@ define(function (require) {
 					name: "Quick Guide",
 					todos: [
 						{ task: "create a todo list", index: 1},
-						{ task: "check off five items", index: 2}
+						{ task: "add some todos", index: 2},
+						{ task: "check off five items", index: 3},
+						{ task: "share this website", index: 4}
 					]
 				});
 			}
