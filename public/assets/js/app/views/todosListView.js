@@ -1,6 +1,6 @@
 define(function (require) {
 	"use strict";
-	var	
+	var	utils			=	require('utils'),
 		todoListItemView	=	require('app/views/todoListItemView'),
 		todoPlaceholder 	=	$('#createTodo').val();
 
@@ -21,6 +21,7 @@ define(function (require) {
 			this.todos = this.model.get( 'todos' );
 			this.$list = $('#listTodos');
 			this.$list.empty();
+
 			this.addAll();
 
 			var 	allCount = this.todos.length,
@@ -63,26 +64,42 @@ define(function (require) {
 			var $target = $(event.target);
 			if( $target.val() == todoPlaceholder || $target.val() == '' ){
 				$target.addClass('placeholder').val(todoPlaceholder);
+				this.clearCreateInputError();
 			}
+		},
+
+		clearCreateInputError: function(){
+			$('#createTodo').removeClass('error').siblings('.error-output').html('');
 		},
 
 		submitCreateInput: function(event){
 			var	newTask = $(event.target).val(),
-				keycode = event.keyCode || event.which;
-			if(keycode === 13 && newTask.length > 1 && newTask.length <= 20) {
+				keycode = event.keyCode || event.which,
+				isValid = utils.validate({type: 'todo', task: newTask});
+			if( isValid ){
+				this.clearCreateInputError();
+			}else{
+				$(event.target).addClass('error').siblings('.error-output').html('Only 3-30 alphanumeric chars and spaces allowed');
+			}
+			if(keycode === 13 && isValid) {
+				this.clearCreateInputError();
 				this.createTodo( newTask );
 			}
 		},
 
 		createTodo: function( task ){
-			var	index = this.model.autoIncrement(),
-				newTodo = new TodosModel.Todos({task: task, category: this.model, index: index});
-			this.model.save();
-			$('#createTodo').val('').focus();
+			if( utils.validate({type: 'todo', task: task}) === true ){
+				var	index = this.model.autoIncrement(),
+					newTodo = new TodosModel.Todos({task: $.trim(task), category: this.model, index: index});
+				this.model.save();
+				$('#createTodo').val('').focus();
+			}
 		},
 
 		removeTodo: function( todo ){
 			todo.destroy();
+			if( this.model.get('todos').length === 0 ) 
+				this.render();
 		}
 	});
 });

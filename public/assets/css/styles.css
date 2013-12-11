@@ -186,8 +186,8 @@ header{
 				text-decoration: none;
 			}
 #createWrapper{
-	height: 50px;
 	margin: 20px 10px 0px;
+	min-height: 50px;
 	overflow: hidden;
 	position: relative;
 	width: 330px;
@@ -211,6 +211,17 @@ header{
 	}
 	#createWrapper #createTodo.placeholder{
 		color: rgba(255,255,255,0.5);
+	}
+	#createWrapper #createTodo.error{
+		background: rgba(255,0,0,0.5);
+		border: 2px solid rgba(255,0,0,1);
+	}
+	#createWrapper p.error{
+		font-size: 9px;
+		font-weight: 300;
+		letter-spacing: 1px;
+		text-align: right;
+		text-transform: uppercase;
 	}
 
 ul#listTodos{
@@ -294,6 +305,7 @@ ul#listTodos{
 			display: none;
 			height: auto;
 			margin: 0px 50px 20px 50px;
+			overflow: auto;
 			position: relative;
 		}
 			ul#listTodos li .accordion-form .edit-title {
@@ -307,21 +319,41 @@ ul#listTodos{
 				margin: 10px 0 10px 0;
 				padding: 0;
 				width: 250px;
+			}	
+			ul#listTodos li .accordion-form .edit-title.error{
+				background: rgba(255,0,0,0.2);
+				border-bottom: 3px solid rgba(255,0,0,1);
 			}
-
-			ul#listTodos li .accordion-form a.deleteTodo{
+			ul#listTodos li .accordion-form p.error{
+				font-size: 9px;
+				font-weight: 300;
+				letter-spacing: 1px;
+				text-align: right;
+				text-transform: uppercase;
+			}
+			ul#listTodos li .accordion-form a.action-btn{
 				border: 1px solid #fff;
 				border-radius: 3px;
 				color: #fff;
 				display: block;
+				float: left;
 				font-size: 14px;
 				height: 35px;
+				margin: 0 5px 10px 5px;
 				padding: 10px;
 				text-align: center;
 				text-decoration: none;
-				width: 250px;
+				width: 120px;
 			}
-			ul#listTodos li .accordion-form a.deleteTodo:hover{				
+			ul#listTodos li .accordion-form a.saveTodo{
+				background: rgba(255,255,255,0.3);
+				margin: 0 0 10px 5px;
+			}
+			ul#listTodos li .accordion-form a.deleteTodo{
+				background: transparent;
+				margin: 0 5px 10px 0;
+			}
+			ul#listTodos li .accordion-form a.saveTodo:hover, ul#listTodos li .accordion-form a.deleteTodo:hover{				
 				background: #fff;
 				border: 1px solid #fff;
 				color: #333;

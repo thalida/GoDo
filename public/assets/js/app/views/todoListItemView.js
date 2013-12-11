@@ -1,6 +1,7 @@
 define(function(require){
 	"use strict";
-	var 	template	=	_.template(require('text!tpl/todoListItem.html')),
+	var 	utils		=	require('utils'),
+		template	=	_.template(require('text!tpl/todoListItem.html')),
 		el = {};
 
 	return Backbone.View.extend({
@@ -25,15 +26,17 @@ define(function(require){
 		events: {
 			"click .status" : "setCompletedStatus",
 			"click .title" : "setCompletedStatus", 
-			"click .edit-btn" : "editTodo",
+			"click .edit-btn" : "showHideEditTodo",
 			"click .deleteTodo" : "removeTodo",
+			"click .saveTodo" : "saveEdit",
 			
-			"keyup .edit-title" : "saveOnEnter"
+			"keyup .edit-title" : "validateTodo"
 		},
 
-		editTodo: function( event ){
+		showHideEditTodo: function( event ){
 			var	that = this,
 				hideOtherAccordions = !( this.$accordion.is(":visible") );
+			that.$('.edit').val( this.model.get('task') );
 			if( hideOtherAccordions == true ){
 				$('.accordion-form').slideUp();
 				$('.title').show();
@@ -54,24 +57,36 @@ define(function(require){
 		hideAccordion: function(){
 			var that = this;
 			this.$accordion.slideUp({duration: 500, complete: function(){
-				that.model.get('category').save();
 				that.$title.show();
 			}});
 		},
 
-		saveOnEnter: function(event){
-		        var keycode = event.keyCode || event.which;
-		        if(keycode === 13){
-		        	this.saveEdit();
-		        }
+		validateTodo: function(event){
+			var	newTask = $.trim(this.$('.edit').val()),
+				keycode = event.keyCode || event.which,
+				isValid = utils.validate({type: 'todo', task: newTask});
+
+			if( isValid ){
+				this.clearEditInputError();
+			}else{
+				this.$('.edit').addClass('error').siblings('.error-output').html('Only 3-30 alphanumeric chars and spaces allowed');
+			}
+
+			if(keycode === 13 && this.model.get('task') !== newTask && isValid) {
+				//this.model.set({task: newTask});
+			}
+		},
+
+		clearEditInputError: function(){
+			this.$('.edit').removeClass('error').siblings('.error-output').html('');
 		},
 		
 		saveEdit: function(event){
-			var newTask = this.$('.edit').val();
+			event.preventDefault();
+			var newTask = $.trim(this.$('.edit').val());
 			this.$('.title').removeClass('editMode');
-			if(newTask == '' || newTask == null){
-				this.removeTask();
-			}else if( $.trim(this.model.get('task')) != $.trim(newTask) ){ // ONLY SAVE IF A NEW TASK WAS ENTERED
+			if( this.model.get('task') !== newTask && utils.validate({type: 'todo', task: newTask}) ){
+				this.clearEditInputError();
 				this.model.set({task: newTask});
 				this.category.save();
 			}
@@ -85,8 +100,11 @@ define(function(require){
 
 		removeTodo: function( event ){
 			event.preventDefault();
-			this.category.get('todos').remove(this.model);
-			this.category.save();
+			var isConfirmed = confirm('Are you sure you want to remove "' + this.model.get('task') + '"?');
+			if( isConfirmed ){
+				this.category.get('todos').remove(this.model);
+				this.category.save();
+			}
 		}
 	});
 });

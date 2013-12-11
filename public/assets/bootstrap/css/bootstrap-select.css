@@ -178,7 +178,7 @@
 
 .bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:hover small,
 .bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:focus small {
-    color:#eb5141;
+    color:#333;
 }
 
 .bootstrap-select.btn-group .dropdown-menu li > dt small {

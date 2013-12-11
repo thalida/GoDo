@@ -17,6 +17,7 @@ if(completed == true){
 
 <div id="list-form-<%=index %>" class="accordion-form">
 	<input class="edit edit-title" type="text" value="<%=task %>" />
+	<p class="error error-output"></p>
 	<select  class="category-dropdown selectpicker show-menu-arrow" data-container="body" data-size="5" data-width="250px" data-show-subtext="true" data-header="Select a todo list">
 		<% 
 		_.each(categories, function(thisCateogry){ 
@@ -25,5 +26,6 @@ if(completed == true){
 			<option id="cat_<%= thisCateogry.attributes.id %>" value="<%= thisCateogry.attributes.id %>" <%=selected %>><%= thisCateogry.attributes.name %></option>
 		<% }); %>
 	</select>
-	<a href="#" class="deleteTodo">Delete this todo</a>
+	<a href="#" class="action-btn deleteTodo">Delete this todo</a>
+	<a href="#" class="action-btn saveTodo">Save Changes</a>
 </div>
