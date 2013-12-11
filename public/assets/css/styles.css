@@ -8,12 +8,16 @@ body{
 *:focus {
 	  outline:0px !important;
 }
+
 .group:after {
 	content: "";
 	display: table;
 	clear: both;
 }
 
+/***************** 
+ *****     BASE STLYING FOR THE DROP MENU(S) USED ON THE SITE
+ *****************/
 .dropit {
 	list-style: none;
 	padding: 0;
@@ -51,6 +55,9 @@ body{
 	box-shadow: inset 0 3px 0px rgba(0, 0, 0, 0.1);
 }
 
+/***************** 
+ *****     ERROR OUTPUT
+ *****************/
 p.error{
 	font-size: 9px;
 	font-weight: 300;
@@ -58,7 +65,9 @@ p.error{
 	text-align: right;
 	text-transform: uppercase;
 }
-
+/***************** 
+ *****     CREDITS AT THE BOTTOM OF THE PAGE (LINKS)
+ *****************/
 #credits{
 	border-top: 1px solid rgba(0,0,0,0.1);
 	bottom: 0;
@@ -85,7 +94,9 @@ p.error{
 		#credits span a:hover{
 			text-decoration: underline;
 		}
-
+/***************** 
+ *****     CONTAINER AROUND TODO APP
+ *****************/
 #container{
 	background: #eb5141;
 	border-radius: 5px;
@@ -97,7 +108,9 @@ p.error{
 	position: relative;
 	width: 350px;
 }
-
+/***************** 
+ *****     HEADER (WITH THE PENCIL ICON)
+ *****************/
 header{
 	background: #fff;
 	border-radius: 5px;
@@ -112,7 +125,9 @@ header{
 		margin: 0 auto;
 		position: relative;
 	}
-
+/***************** 
+ *****     MENU FOR CATEGORIES (LISTS)
+ *****************/
 #menu{
 	margin: 50px 10px 0 10px;
 	position: relative;
@@ -193,6 +208,9 @@ header{
 				color: #333;
 				text-decoration: none;
 			}
+/***************** 
+ *****     CREATE INPUT SECTION
+ *****************/
 #createWrapper{
 	margin: 20px 10px 0px;
 	min-height: 50px;
@@ -231,7 +249,9 @@ header{
 		text-align: right;
 		text-transform: uppercase;
 	}
-
+/***************** 
+ *****     TODOS LIST
+ *****************/
 ul#listTodos{
 	margin: 0 0 50px 0;
 	position: relative;
@@ -371,6 +391,9 @@ ul#listTodos{
 				border: 1px solid #fff;
 				color: #fff;
 			}
+/***************** 
+ *****     MODALS FOR CATEGORY (LIST) CREATE AND CHANGE
+ *****************/
 .categories-modal-title{
 	color: #000;
 	font: 400 20px "Roboto",sans-serif;
@@ -397,7 +420,9 @@ ul#listTodos{
 		background: #333;
 		color: #fff;
 	}
-
+/***************** 
+ *****     TODO LIST FOOTER (STATS)
+ *****************/
 footer{
 	background: rgba(0,0,0,0.05);
 	bottom: 0;
@@ -445,7 +470,9 @@ footer{
 				float: right;
 				line-height: 10px;
 			}
-
+/***************** 
+ *****     ICON SPRITES
+ *****************/
 .icon{
 	background-image: url(images/sprite.png);
 	background-repeat: no-repeat;
@@ -492,7 +519,9 @@ footer{
 		width: 16px;
 	}
 
-// COLOR PICKER
+/***************** 
+ *****     COLOR PICKER 
+ *****************/
 .sp-container {
 	border-radius: 0;
 	background-color: #ECECEC;
