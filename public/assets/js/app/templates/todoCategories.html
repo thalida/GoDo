@@ -1,19 +1,58 @@
-<select id="categorySelectMenu" class="selectpicker show-menu-arrow" data-container="body" data-live-search="true" data-size="5" data-width="280px" data-show-subtext="true" data-header="Select or search for a todo list...">
-	<% 
-	_.each(categories, function(cateogry){ 
-		var	remaining = cateogry.todos.where({completed: false}).length,
-			total = cateogry.todos.length;
+<select id="categorySelectMenu" class="selectpicker show-menu-arrow show-tick" data-container="body" data-live-search="true" data-size="5" data-width="280px" data-show-subtext="true" data-header="Select or search for a todo list...">
+	<%
+	_.each(categories, function(category){ 
+		var	remaining = category.todos.where({completed: false}).length,
+			total = category.todos.length,
+			selected = (chosenCategory.id == category.id) ? 'selected="selected"' : '';
 	%>
-	<option id="cat_<%= cateogry.id %>" value="<%= cateogry.id %>" data-subtext="(<%=remaining %>/<%=total %> Remaining)"><%= cateogry.name %></option>
+	<option id="cat_<%= category.id %>" value="<%= category.id %>" data-subtext="(<%=remaining %>/<%=total %> Remaining)" <%=selected %>><%= category.name %></option>
 	<% }); %>
 </select>
 <ul class="menu">
 	<li>
 		<a href="#"><span class="icon icon-menu"></span></a>
 		<ul>
-			<li><a href="#">Create a new list</a></li>
-			<li><a href="#">Change list name</a></li>
-			<li><a href="#">Delete list</a></li>
+			<li data-toggle="modal" data-target="#categoriesCreateNew"><a href="#">Create a new list</a></li>
+			<li data-toggle="modal" data-target="#categoriesChangeName"><a href="#">Change list name</a></li>
+			<li id="categoriesDelete"><a href="#">Delete list</a></li>
 		</ul>
 	</li>
 </ul>
+
+<!-- Modal -->
+<div class="modal fade" id="categoriesCreateNew" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true" data-backdrop="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title categories-modal-title" id="createModalLabel">Create a new list</h4>
+			</div>
+			<div class="modal-body categories-modal-body">
+	 			<input id="categoriesCreateInput" type="text" placeholder="List Name..." />
+	 			<p class="error error-output"></p>
+			</div>
+			<div class="modal-footer">
+			<button id="closeCreateCategory" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button id="submitCreateCategory" type="button" class="btn btn-primary categories-modal-submitBtn">Save changes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
+<div class="modal fade" id="categoriesChangeName" tabindex="-1" role="dialog" aria-labelledby="changeModalLabel" aria-hidden="true" data-backdrop="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title categories-modal-title" id="changeModalLabel">Change list name</h4>
+			</div>
+			<div class="modal-body categories-modal-body">
+	 			<input id="categoriesChangeInput" type="text" value="<%=chosenCategory.name %>"/>
+			</div>
+			<div class="modal-footer">
+			<button id="closeChangeCategory" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button id="submitChangeCategory" type="button" class="btn btn-primary categories-modal-submitBtn">Save changes</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

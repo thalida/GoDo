@@ -15,6 +15,12 @@ define(function (require) {
 			this.listenTo(this.model, 'add', this.render);
 			this.listenTo(this.model, 'change', this.render);
 			this.listenTo(this.model, 'reset', this.render);
+
+			this.listenTo(this.model.collection, 'add', this.render);
+			this.listenTo(this.model.collection, 'change', this.render);
+			this.listenTo(this.model.collection, 'remove', this.render);
+
+			Backbone.eventAggregator.on('unbindView', this.unbindView);
 		},
 		
 		render: function (eventName) {
@@ -31,6 +37,7 @@ define(function (require) {
 			$('#statsCompleted').html(completedCount);
 
 			Backbone.eventAggregator.trigger('renderView', this.model);
+			
 			return this;
 		},
 		
@@ -100,6 +107,11 @@ define(function (require) {
 			todo.destroy();
 			if( this.model.get('todos').length === 0 ) 
 				this.render();
+		},
+
+		unbindView: function() {
+			this.undelegateEvents();
+			this.$el.removeData().unbind(); 
 		}
 	});
 });
